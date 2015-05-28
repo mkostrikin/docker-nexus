@@ -2,7 +2,7 @@ FROM       centos:centos7
 MAINTAINER Sonatype <cloud-ops@sonatype.com>
 
 ENV SONATYPE_WORK /sonatype-work
-ENV NEXUS_VERSION 2.3.1
+ENV NEXUS_VERSION 2.3.1-01
 
 RUN yum install -y \
   curl tar createrepo \
@@ -17,7 +17,7 @@ RUN cd /var/tmp \
 
 RUN mkdir -p /opt/sonatype/nexus \
   && curl --fail --silent --location --retry 3 \
-    https://download.sonatype.com/nexus/oss/nexus-${NEXUS_VERSION}-bundle.tar.gz \
+    http://download.sonatype.com/nexus/oss/nexus-2.3.1-bundle.tar.gz \
   | gunzip \
   | tar x -C /tmp nexus-${NEXUS_VERSION} \
   && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/sonatype/nexus/ \
