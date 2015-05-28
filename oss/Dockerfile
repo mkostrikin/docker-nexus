@@ -23,6 +23,7 @@ RUN mkdir -p /opt/sonatype/nexus \
   && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/sonatype/nexus/ \
   && rm -rf /tmp/nexus-${NEXUS_VERSION} \
   && mkdir -p /opt/sonatype/sonatype-work/nexus/tmp \
+  && sed 's|\(nexus-webapp-context-path=/\).*$|\1|' -i /opt/sonatype/nexus/conf/nexus.properties \
   && chown 200 -R /opt/sonatype
 
 RUN useradd -r -u 200 -m -c "nexus role account" -d ${SONATYPE_WORK} -s /bin/false nexus
